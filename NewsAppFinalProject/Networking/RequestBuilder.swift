@@ -22,7 +22,7 @@ public enum HTTPMethod: String {
 public protocol RequestBuilder {
     var method: HTTPMethod { get }
     var baseURL: URL { get }
-    var path: String { get }
+    var category: String { get }
     var params: [URLQueryItem]? { get }
     var headers: [String: String] { get }
 
@@ -34,15 +34,19 @@ public protocol RequestBuilder {
 struct BasicRequestBuilder: RequestBuilder {
     var method: HTTPMethod
     var baseURL: URL
-    var path: String
+    var category: String
     var params: [URLQueryItem]?
     var headers: [String: String] = [:]
 }
 
 
+//MARK: category might go under params
+
+
+
 public extension RequestBuilder {
     func toURLRequest() -> URLRequest {
-        var components = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false)!
+        var components = URLComponents(url: baseURL.appendingPathComponent(category), resolvingAgainstBaseURL: false)!
         components.queryItems = params
         let url = components.url!
 

@@ -29,12 +29,17 @@ public struct Request {
 
 extension Request {
     static func popularMovies(completion: @escaping (Result<PagedResults<Movie>, Error>) -> Void) -> Request {
-        Request.basic(baseURL: MovieDB.baseURL, path: "discover/movie", params: [
+        Request.basic(baseURL: NewsDB.baseURL, category: "", params: [
             URLQueryItem(name: "sort_by", value: "popularity.desc")
         ]) { result in
           //we need to take the result and decode the response JSON into our expected type
             result.decoding(PagedResults<Movie>.self, completion: completion)
         }
+    }
+    
+    static func topArticles(completion: @escaping (Result<PagedResults<Article>, Error>) -> Void) -> Request {
+        
+        
     }
     
     static func upcomingMovies(completion: @escaping (Result<PagedResults<Movie>, Error>) -> Void) ->
