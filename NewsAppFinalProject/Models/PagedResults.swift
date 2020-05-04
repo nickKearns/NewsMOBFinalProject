@@ -11,9 +11,8 @@ import Foundation
 
 
 struct PagedResults<T: Model>: Model {
-    let page: Int
-    let totalPages: Int
-    let results: [T]
+    let totalResults: Int
+    let articles: [T]
 }
 
 extension PagedResults {

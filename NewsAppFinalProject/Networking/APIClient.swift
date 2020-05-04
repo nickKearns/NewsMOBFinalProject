@@ -21,6 +21,7 @@ struct APIClient {
     
     public func send(request: Request) {
         let urlRequest = request.builder.toURLRequest()
+        print(urlRequest)
         let task = session.dataTask(with: urlRequest) { data, response, error in
             let result: Result<Data, Error>
             if let error = error {

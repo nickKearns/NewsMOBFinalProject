@@ -9,25 +9,29 @@
 import Foundation
 
 
+
+
+
+
 // MARK: - Article
-struct Article: Codable {
-    let source: Source
+struct Article: Model, Hashable {
     let author: String?
-    let title, articleDescription: String
+    let title, description: String
     let url: String
     let urlToImage: String
-    let publishedAt: Date
     let content: String?
 
-    enum CodingKeys: String, CodingKey {
-        case source, author, title
-        case articleDescription = "description"
-        case url, urlToImage, publishedAt, content
-    }
 }
+//
+//struct Movie: Model, Hashable {
+//    let id: Int
+//    let title: String
+//    let posterPath: String
+//    let releaseDate: String
+//}
 
-// MARK: - Source
-struct Source: Codable {
-    let id: String?
-    let name: String
-}
+
+
+
+
+
