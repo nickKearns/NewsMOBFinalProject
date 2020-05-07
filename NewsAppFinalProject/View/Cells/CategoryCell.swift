@@ -19,7 +19,10 @@ class CategoryCell: UICollectionViewCell {
     }
     
     func set(categoryTitle: String) {
-        
+        backgroundColor = .lightGray
+        layer.cornerRadius = 10
+        categoryLabel.font = UIFont(name: "Avenir Heavy", size: 30)
+        categoryLabel.text = categoryTitle
         
     }
     

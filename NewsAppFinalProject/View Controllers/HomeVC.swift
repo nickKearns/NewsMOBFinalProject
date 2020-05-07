@@ -13,9 +13,20 @@ class HomeVC: UIViewController {
     
     
     
-    var sections: [Section]  = [
-        TitleSection(title: "News Stand")
-        
+//    var sections: [Section]  = [
+//        TitleSection(title: "News Stand")
+//    ]
+    
+    var numberOfItems: Int = 6
+    
+    var categories: [String] = [
+        "business",
+        "tech",
+        "entertainment",
+        "health",
+        "science",
+        "sports"
+    
     ]
     
     
@@ -31,25 +42,27 @@ class HomeVC: UIViewController {
         self.view.backgroundColor = .white
         setupCollectionView()
     }
-    
-    lazy var collectionViewLayout: UICollectionViewLayout = {
-        var sections = self.sections
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
-            return sections[sectionIndex].layoutSection()
-        }
-        return layout
-    }()
+//
+//    lazy var collectionViewLayout: UICollectionViewLayout = {
+//        var sections = self.sections
+//        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
+//            return sections[sectionIndex].layoutSection()
+//        }
+//        return layout
+//    }()
     
     func setupCollectionView() {
         
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: collectionViewLayout)
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .white
         
         collectionView.register(UINib(nibName: "TitleCell", bundle: .main), forCellWithReuseIdentifier: TitleCell.identifier)
-
+        collectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: CategoryCell.identifier)
         view.addSubview(collectionView)
         
         
@@ -85,19 +98,49 @@ class HomeVC: UIViewController {
 
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        categories.count
+    }
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.count
+        1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sections[section].numberOfItems
-    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        sections[indexPath.section].configureCell(collectionView: collectionView, indexPath: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+        
+        cell.set(categoryTitle: categories[indexPath.row])
+        return cell
     }
     
     
 }
 
+extension HomeVC: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.width * 0.45, height: 180)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15) //.zero
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+}
