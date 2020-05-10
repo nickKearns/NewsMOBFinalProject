@@ -40,6 +40,8 @@ class HomeVC: UIViewController {
         // Do any additional setup after loading the view.
         //        fetchTopStories()
         self.view.backgroundColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Avenir Heavy", size: 20)!]
+        title = "News Stand"
         setupCollectionView()
     }
 //
@@ -73,25 +75,25 @@ class HomeVC: UIViewController {
     }
     
     
-    func fetchTopStories() {
-        let api = NewsDB.api
-        print("it got this far")
-        api.send(request: .topArticles(completion: { result in
-            switch result {
-            case .success(let page):
-                //              print(page.results)
-                //              self.popularMovies = page.results
-                //              var basicSection = MovieSection()
-                //              basicSection.numberOfItems = page.results.count
-                //              basicSection.items = page.results
-                //              self.sections.append(TitleSection(title: "Popular Movies"))
-                //              self.sections.append(basicSection)
-                //              self.setupCollectionView()
-                print(page.articles)
-            case .failure(let error):  print(error)
-            }
-        }))
-    }
+//    func fetchTopStories() {
+//        let api = NewsDB.api
+//        print("it got this far")
+//        api.send(request: .topArticles(completion: { result in
+//            switch result {
+//            case .success(let page):
+//                //              print(page.results)
+//                //              self.popularMovies = page.results
+//                //              var basicSection = MovieSection()
+//                //              basicSection.numberOfItems = page.results.count
+//                //              basicSection.items = page.results
+//                //              self.sections.append(TitleSection(title: "Popular Movies"))
+//                //              self.sections.append(basicSection)
+//                //              self.setupCollectionView()
+//                print(page.articles)
+//            case .failure(let error):  print(error)
+//            }
+//        }))
+//    }
     
     
 }

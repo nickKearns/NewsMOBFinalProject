@@ -36,6 +36,8 @@ class CategoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
+        title = thisPagesCategory
         
         self.view.backgroundColor = .white
         setupTableView()
@@ -67,7 +69,6 @@ class CategoryVC: UIViewController {
     
     
     func setupTableView() {
-        tableView.backgroundColor = .black
         
         self.view.addSubview(tableView)
         
