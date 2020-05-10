@@ -103,6 +103,13 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let categoryVC = CategoryVC()
+        categoryVC.thisPagesCategory = categories[indexPath.row]
+        navigationController?.pushViewController(categoryVC, animated: true)
+    }
+    
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
@@ -110,6 +117,24 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
+        
+        
+        //This creates the shadows and modifies the cards a little bit
+        //Got this from a Riley Norris youtube video
+        //https://github.com/rileydnorris/cardLayoutSwift
+        cell.contentView.layer.cornerRadius = 4.0
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+        cell.contentView.layer.masksToBounds = false
+        cell.layer.shadowColor = UIColor.gray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        cell.layer.shadowRadius = 4.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        
+        
+
         
         cell.set(categoryTitle: categories[indexPath.row])
         return cell
@@ -123,24 +148,25 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width * 0.45, height: 180)
+        return CGSize(width: collectionView.bounds.width * 0.40, height: 180)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15) //.zero
+        return UIEdgeInsets(top: 15, left: 25, bottom: 0, right: 25) //.zero
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 3
+        
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 30
     }
 }

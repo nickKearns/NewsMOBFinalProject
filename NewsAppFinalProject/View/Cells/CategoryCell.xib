@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yn3-B7-vqS">
-                        <rect key="frame" x="64.5" y="82" width="71" height="36"/>
+                        <rect key="frame" x="8" y="82" width="184" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -26,14 +26,16 @@
             </view>
             <constraints>
                 <constraint firstItem="Yn3-B7-vqS" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="JLJ-Q6-IVr"/>
+                <constraint firstItem="Yn3-B7-vqS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="TnB-j5-1iD"/>
                 <constraint firstItem="Yn3-B7-vqS" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="bdb-uj-5gj"/>
+                <constraint firstAttribute="trailing" secondItem="Yn3-B7-vqS" secondAttribute="trailing" constant="8" id="f5H-20-7ud"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="197" height="161"/>
             <connections>
                 <outlet property="categoryLabel" destination="Yn3-B7-vqS" id="Ztc-ED-XJT"/>
             </connections>
-            <point key="canvasLocation" x="244.20289855072465" y="189.84375"/>
+            <point key="canvasLocation" x="243.47826086956525" y="189.50892857142856"/>
         </collectionViewCell>
     </objects>
 </document>

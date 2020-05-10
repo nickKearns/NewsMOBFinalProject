@@ -18,7 +18,7 @@ struct Article: Model, Hashable {
     let author: String?
     let title, description: String
     let url: String
-    let urlToImage: String
+    let urlToImage: String?
     let content: String?
 
 }

@@ -47,6 +47,18 @@ extension Request {
         
     }
     
+    static func givenCategoryArticles(category: String, completion: @escaping (Result<PagedResults<Article>, Error>) -> Void
+    ) -> Request {
+        Request.basic(method: .get, baseURL: NewsDB.baseURL, params: [URLQueryItem(name: "q", value: category)]) { result in
+            result.decoding(PagedResults<Article>.self, completion: completion)
+            
+        }
+    }
+//
+//    static func givenCategoryArticles(completion: @escaping (Result<PagedResults<Article, Error>) -> Void) -> Request {
+//        Request.basic(
+//    }
+    
 //    static func upcomingMovies(completion: @escaping (Result<PagedResults<Movie>, Error>) -> Void) ->
 //        Request {
 //            Request.basic(baseURL: MovieDB.baseURL, path: "movie/upcoming", params: [

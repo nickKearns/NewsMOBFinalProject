@@ -14,6 +14,8 @@ struct NewsDB { // logic specific to the TMDB API
 
     
     
+    
+    
     public static let baseURL = URL(string: "https://newsapi.org/v2/top-headlines?")!
     public static var api: APIClient = {
         let configuration = URLSessionConfiguration.default
