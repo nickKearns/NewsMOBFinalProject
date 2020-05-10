@@ -13,9 +13,6 @@ class HomeVC: UIViewController {
     
     
     
-//    var sections: [Section]  = [
-//        TitleSection(title: "News Stand")
-//    ]
     
     var numberOfItems: Int = 6
     
@@ -26,7 +23,7 @@ class HomeVC: UIViewController {
         "health",
         "science",
         "sports"
-    
+        
     ]
     
     
@@ -38,20 +35,18 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //        fetchTopStories()
         self.view.backgroundColor = .white
+        
+        //set the navbar title to a custom font
+        //this changes the font for all titles regardless of VC
+        
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Avenir Heavy", size: 20)!]
         title = "News Stand"
+        
+        
         setupCollectionView()
     }
-//
-//    lazy var collectionViewLayout: UICollectionViewLayout = {
-//        var sections = self.sections
-//        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
-//            return sections[sectionIndex].layoutSection()
-//        }
-//        return layout
-//    }()
+    
     
     func setupCollectionView() {
         
@@ -70,30 +65,10 @@ class HomeVC: UIViewController {
         
         view.addSubview(collectionView)
         collectionView.reloadData()
-
+        
         
     }
     
-    
-//    func fetchTopStories() {
-//        let api = NewsDB.api
-//        print("it got this far")
-//        api.send(request: .topArticles(completion: { result in
-//            switch result {
-//            case .success(let page):
-//                //              print(page.results)
-//                //              self.popularMovies = page.results
-//                //              var basicSection = MovieSection()
-//                //              basicSection.numberOfItems = page.results.count
-//                //              basicSection.items = page.results
-//                //              self.sections.append(TitleSection(title: "Popular Movies"))
-//                //              self.sections.append(basicSection)
-//                //              self.setupCollectionView()
-//                print(page.articles)
-//            case .failure(let error):  print(error)
-//            }
-//        }))
-//    }
     
     
 }
@@ -136,7 +111,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         
         
-
+        
         
         cell.set(categoryTitle: categories[indexPath.row])
         return cell
@@ -146,26 +121,26 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
 }
 
 extension HomeVC: UICollectionViewDelegateFlowLayout {
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width * 0.40, height: 180)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 15, left: 25, bottom: 0, right: 25) //.zero
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 3
         
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {

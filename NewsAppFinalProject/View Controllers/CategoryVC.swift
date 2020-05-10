@@ -114,4 +114,14 @@ extension CategoryVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let articleDetailVC = ArticleDetailVC()
+        let currentArticle = articles[indexPath.row]
+        let currentArticleURL = currentArticle.url
+        articleDetailVC.articleString = currentArticleURL
+        
+        navigationController?.pushViewController(articleDetailVC, animated: true)
+        
+    }
+    
 }
