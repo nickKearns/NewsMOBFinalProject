@@ -49,7 +49,7 @@ extension Request {
     
     static func givenCategoryArticles(page: Int, category: String, completion: @escaping (Result<PagedResults<Article>, Error>) -> Void
     ) -> Request {
-        Request.basic(method: .get, baseURL: NewsDB.baseURL, params: [URLQueryItem(name: "q", value: category), URLQueryItem(name: "sortBy", value: "popularity"), URLQueryItem(name: "page", value: String(page))]) { result in
+        Request.basic(method: .get, baseURL: NewsDB.baseURL, params: [URLQueryItem(name: "q", value: category), URLQueryItem(name: "sortBy", value: "relevancy"), URLQueryItem(name: "page", value: String(page))]) { result in
             result.decoding(PagedResults<Article>.self, completion: completion)
             
         }

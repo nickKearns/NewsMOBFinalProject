@@ -34,9 +34,4 @@ class ArticleDetailVC: UIViewController, WKUIDelegate {
         
     }
     
-    
-    
-    
-    
-    
 }

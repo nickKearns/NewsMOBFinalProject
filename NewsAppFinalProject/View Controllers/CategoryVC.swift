@@ -101,7 +101,7 @@ extension CategoryVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.identifier, for: indexPath) as! ArticleCell
         cell.set(article: articles[indexPath.row])
-        print(articles[indexPath.row].title)
+//        print(articles[indexPath.row].title)
         //        print(cell.articleTitleLabel.text!)
         return cell
     }

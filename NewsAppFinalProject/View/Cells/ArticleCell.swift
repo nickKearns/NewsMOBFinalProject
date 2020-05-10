@@ -34,7 +34,8 @@ class ArticleCell: UITableViewCell {
     func set(article: Article) {
         articleTitleLabel.text = article.title
         articleTitleLabel.font = UIFont(name: "Avenir Heavy" , size: 18)
-        sourceLabel.text = article.author ?? ""
+//        sourceLabel.text = article.author ?? ""
+        sourceLabel.text = article.source.name
         sourceLabel.font = UIFont(name: "Avenir Heavy", size: 15)
         guard let urlToImageString = article.urlToImage else { return }
         let imageURL = URL(string: urlToImageString)
