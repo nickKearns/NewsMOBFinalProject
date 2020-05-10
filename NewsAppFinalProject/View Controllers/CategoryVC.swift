@@ -20,6 +20,8 @@ class CategoryVC: UIViewController {
     var articles: [Article] = []
     
     
+    var page: Int = 1
+    
     
     var tableView: UITableView = {
         let tableView = UITableView()
@@ -46,16 +48,16 @@ class CategoryVC: UIViewController {
         
         let api = NewsDB.api
         print("it got this far")
-        api.send(request: .givenCategoryArticles(category: thisPagesCategory, completion: { result in
+        api.send(request: .givenCategoryArticles(page: self.page, category: thisPagesCategory, completion: { result in
             switch result {
             case .success(let page):
-                self.articles = page.articles
+                self.articles.append(contentsOf: page.articles)
                 print(page.articles)
                 self.tableView.reloadData()
             case .failure(let error):  print(error)
             }
         }))
-
+        
     }
     
     
@@ -68,7 +70,7 @@ class CategoryVC: UIViewController {
         tableView.backgroundColor = .black
         
         self.view.addSubview(tableView)
-
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -99,8 +101,16 @@ extension CategoryVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.identifier, for: indexPath) as! ArticleCell
         cell.set(article: articles[indexPath.row])
         print(articles[indexPath.row].title)
-//        print(cell.articleTitleLabel.text!)
+        //        print(cell.articleTitleLabel.text!)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = articles.count - 1
+        if indexPath.row == lastElement {
+            self.page += 1
+            makeNetworkCallForArticles()
+        }
     }
     
 }
