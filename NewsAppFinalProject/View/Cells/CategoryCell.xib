@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,17 +22,25 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W7F-Bb-tVs">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="W7F-Bb-tVs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0Z8-1s-otz"/>
+                <constraint firstAttribute="trailing" secondItem="W7F-Bb-tVs" secondAttribute="trailing" id="Bc1-yN-ffS"/>
+                <constraint firstItem="W7F-Bb-tVs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="I1Q-7c-41J"/>
                 <constraint firstItem="Yn3-B7-vqS" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="JLJ-Q6-IVr"/>
                 <constraint firstItem="Yn3-B7-vqS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="TnB-j5-1iD"/>
                 <constraint firstItem="Yn3-B7-vqS" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="bdb-uj-5gj"/>
+                <constraint firstAttribute="bottom" secondItem="W7F-Bb-tVs" secondAttribute="bottom" id="chj-oh-pSd"/>
                 <constraint firstAttribute="trailing" secondItem="Yn3-B7-vqS" secondAttribute="trailing" constant="8" id="f5H-20-7ud"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="197" height="161"/>
             <connections>
+                <outlet property="backgroundImg" destination="W7F-Bb-tVs" id="ybG-hs-BKN"/>
                 <outlet property="categoryLabel" destination="Yn3-B7-vqS" id="Ztc-ED-XJT"/>
             </connections>
             <point key="canvasLocation" x="243.47826086956525" y="189.50892857142856"/>

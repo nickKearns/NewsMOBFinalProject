@@ -26,16 +26,26 @@ class HomeVC: UIViewController {
         
     ]
     
+    var categoriesbackgrounds: [UIImage] = [
+        UIImage(named: "business_background")!,
+        UIImage(named: "tech_background")!,
+        UIImage(named: "entertainment_background")!,
+        UIImage(named: "health_background")!,
+        UIImage(named: "science_background")!,
+        UIImage(named: "sports_background")!
+    ]
+    
     
     
     
     var collectionView: UICollectionView!
     
+    var searchBar: UISearchBar!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = .white
         
         //set the navbar title to a custom font
         //this changes the font for all titles regardless of VC
@@ -43,9 +53,21 @@ class HomeVC: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Avenir Heavy", size: 20)!]
         title = "News Stand"
         
-        
+        setupSearchBar()
         setupCollectionView()
+        
     }
+    
+    func setupSearchBar() {
+        
+        searchBar = UISearchBar()
+        
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.delegate = self
+        
+        
+    }
+    
     
     
     func setupCollectionView() {
@@ -56,7 +78,6 @@ class HomeVC: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .white
         
         collectionView.register(UINib(nibName: "TitleCell", bundle: .main), forCellWithReuseIdentifier: TitleCell.identifier)
         collectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: CategoryCell.identifier)
@@ -113,7 +134,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         
         
-        cell.set(categoryTitle: categories[indexPath.row])
+        cell.set(categoryTitle: categories[indexPath.row], image: categoriesbackgrounds[indexPath.row])
         return cell
     }
     
@@ -146,4 +167,9 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 30
     }
+}
+
+
+extension HomeVC: UISearchBarDelegate {
+    
 }
