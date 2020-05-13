@@ -35,38 +35,34 @@ class HomeVC: UIViewController {
         UIImage(named: "sports_background")!
     ]
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     
     
     
     var collectionView: UICollectionView!
     
-    var searchBar: UISearchBar!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //set the navbar title to a custom font
-        //this changes the font for all titles regardless of VC
+        
+        self.view.backgroundColor = .systemGray6
+        
+        
+        navigationItem.searchController = searchController
+        
+        searchController.searchBar.delegate = self
         
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Avenir Heavy", size: 20)!]
         title = "News Stand"
         
-        setupSearchBar()
         setupCollectionView()
         
     }
     
-    func setupSearchBar() {
-        
-        searchBar = UISearchBar()
-        
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.delegate = self
-        
-        
-    }
     
     
     
@@ -76,8 +72,12 @@ class HomeVC: UIViewController {
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
+        
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        collectionView.backgroundColor = .systemGray6
+        
         
         collectionView.register(UINib(nibName: "TitleCell", bundle: .main), forCellWithReuseIdentifier: TitleCell.identifier)
         collectionView.register(UINib(nibName: "CategoryCell", bundle: .main), forCellWithReuseIdentifier: CategoryCell.identifier)
@@ -171,5 +171,14 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
 
 
 extension HomeVC: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let categoryVC = CategoryVC()
+        categoryVC.thisPagesCategory = searchBar.text
+        navigationController?.pushViewController(categoryVC, animated: true)
+    }
+    
+    
+    
     
 }

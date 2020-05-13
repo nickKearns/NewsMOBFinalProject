@@ -39,7 +39,7 @@ class CategoryVC: UIViewController {
         navigationController?.isNavigationBarHidden = false
         title = thisPagesCategory
         
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemGray6
         setupTableView()
         makeNetworkCallForArticles()
         
@@ -54,7 +54,7 @@ class CategoryVC: UIViewController {
             switch result {
             case .success(let page):
                 self.articles.append(contentsOf: page.articles)
-                print(page.articles)
+//                print(page.articles)
                 self.tableView.reloadData()
             case .failure(let error):  print(error)
             }
